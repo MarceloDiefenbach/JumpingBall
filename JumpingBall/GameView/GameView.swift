@@ -8,7 +8,7 @@
 import SwiftUI
 import SpriteKit
 
-struct ContentView: View {
+struct GameView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
     
@@ -36,6 +36,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        GameView()
     }
 }

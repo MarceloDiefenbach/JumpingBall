@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Game
     private var outsidePipe: Bool = true
+    private var pointsToChangeDifficultyOfHard: Int = 20
     
     // MARK: - Nodes
     private var background: SKSpriteNode = SKSpriteNode()
@@ -250,7 +251,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hsTextLabel.attributedText = NSAttributedString(string: "High score:",
                                                         attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold),
                                                                     .foregroundColor: UIColor.white])
-        hsLabel.attributedText = NSAttributedString(string: "\(GameDataBase.standard.getHighScore())",
+        hsLabel.attributedText = NSAttributedString(string: "\(GameDataBase.standard.getHighScore(difficulty: viewModel!.difficulty))",
                                                     attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .bold),
                                                                 .foregroundColor: UIColor.white])
         
@@ -265,6 +266,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // MARK: - Pipes
+    
+    
+    func rotatePipe(node: SKSpriteNode) {
+        var rotateAction: SKAction
+        var rotetaReverse: SKAction
+        
+        rotateAction = SKAction.rotate(byAngle: -0.13, duration: 1)
+        rotetaReverse = SKAction.rotate(byAngle: +0.35, duration: 2)
+        
+        let rotateSequence = SKAction.sequence([rotateAction, rotetaReverse])
+        let rotateRepeat = SKAction.repeatForever(rotateSequence)
+        
+        node.run(rotateRepeat)
+    }
     
     func createTopPipe(sizeTop: Int) {
         let topPipe = SKSpriteNode(imageNamed: "Pipe")
@@ -288,6 +303,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         topPipe.position.x = xPipe
         topPipe.position.y = CGFloat(yPipe)
         topPipe.zPosition = 0.8
+        
+        if viewModel?.difficulty == .hard {
+            rotatePipe(node: topPipe)
+        }
         
         addChild(topPipe)
     }
@@ -317,18 +336,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bottomPipe.position.y = CGFloat(yPipe)
         bottomPipe.zPosition = 0.8
         
+        if viewModel?.difficulty == .hard {
+            rotatePipe(node: bottomPipe)
+        }
+        
         addChild(bottomPipe)
     }
     
     func movePipes() {
+        
+        var moveValue: CGFloat = 2
+        
+        if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
+            moveValue = 3
+        }
+        
         self.enumerateChildNodes(withName: "TopPipe") { node, error in
-            node.position.x -= 2
+            node.position.x -= moveValue
             if node.position.x < -((self.scene?.size.width)!) {
                 node.position.x += ((self.scene?.size.width)! * 3)
             }
         }
         self.enumerateChildNodes(withName: "BottomPipe") { node, error in
-            node.position.x -= 2
+            node.position.x -= moveValue
             if node.position.x < -((self.scene?.size.width)!) {
                 node.position.x += ((self.scene?.size.width)! * 3)
             }
@@ -352,13 +382,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func removePipes() {
         self.enumerateChildNodes(withName: "TopPipe") { node, error in
-            if node.position.x <= -((self.scene?.size.width)!)/2 - 30{
+            if node.position.x <= -((self.scene?.size.width)!)/2 - 100{
                 node.removeFromParent()
             }
         }
         
         self.enumerateChildNodes(withName: "BottomPipe") { node, error in
-            if node.position.x <= -((self.scene?.size.width)!)/2 - 30 {
+            if node.position.x <= -((self.scene?.size.width)!)/2 - 100 {
                 node.removeFromParent()
             }
         }
@@ -385,7 +415,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Game Over
     
     func gameOver() {
-        GameDataBase.standard.setHighScore(newHighScore: self.viewModel!.actualScore)
+        GameDataBase.standard.setHighScore(newHighScore: self.viewModel!.actualScore, difficulty: viewModel!.difficulty)
         
         self.viewModel!.isGameOver = true
         self.viewModel!.isPresentingView = .winView
@@ -422,7 +452,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if ((self.viewModel?.didStartGame) != false) {
             
-            if deltaTime > 3.0 {
+            var time: Double = 3.0
+            
+            if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
+                time = 2.0
+            }
+            
+            if deltaTime > time {
                 let maxTop = (self.scene?.size.height)! - self.ball.size.height*3.5 - (self.scene?.size.height)!*0.15
                 let topValue = Int.random(in: Int((self.scene?.size.height)!*0.15)..<Int(maxTop))
                 let bottomValue = Int(maxTop) - topValue + Int((self.scene?.size.height)!*0.15)

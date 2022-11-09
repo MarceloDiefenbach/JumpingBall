@@ -11,6 +11,10 @@ enum PresentingViews {
     case home, gameRun, winView;
 }
 
+enum Difficulty {
+    case easy, medium, hard;
+}
+
 class GameViewModel: ObservableObject {
     
     @Published var AdMobBannerHome: String = "ca-app-pub-7490663355066325/4061015077"
@@ -19,11 +23,12 @@ class GameViewModel: ObservableObject {
 //    @Published var AdMobBannerWin: String = "ca-app-pub-3940256099942544/2934735716"
     
     @Published var isPresentingGameView: Bool = false
-    @Published var isPresentingView: PresentingViews = .gameRun
+    @Published var isPresentingView: PresentingViews = .home
     
     @Published var isGameOver: Bool = false
     @Published var didStartGame: Bool = false
     
     @Published var actualScore: Int = 0
+    @Published var difficulty: Difficulty = .hard
     
 }

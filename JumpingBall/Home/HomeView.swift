@@ -1,18 +1,19 @@
 //
-//  WinView.swift
+//  HomeView.swift
 //  JumpingBall
 //
-//  Created by Marcelo Diefenbach on 08/11/22.
+//  Created by Marcelo Diefenbach on 09/11/22.
 //
 
 import Foundation
 import SwiftUI
 
-struct WinView: View {
+struct HomeView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
+    
     @State var isShowingOtherApps: Bool = false
-
+    
     var body: some View {
         ZStack {
             Image("Background")
@@ -20,34 +21,21 @@ struct WinView: View {
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             VStack {
-                Spacer()
-                Text("YOUR SCORE")
-                    .font(.system(size: 24, weight: .regular))
-                    .foregroundColor(.white)
-                Text("\(viewModel.actualScore)")
-                    .font(.system(size: 56, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 24)
-                Text("HIGH SCORE")
-                    .font(.system(size: 24, weight: .regular))
-                    .foregroundColor(.white)
-                Text("\(GameDataBase.standard.getHighScore(difficulty: self.viewModel.difficulty))")
-                    .font(.system(size: 56, weight: .bold))
+                
+                Text("Select the difficulty\nyou are ready to play")
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.bottom, 40)
                 
                 HStack {
                     HStack {
-                        Image(systemName: "play.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(Color("PurplePrimary"))
-                        Text("Tap to restart")
+                        Text("Easy")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(Color("PurplePrimary"))
                         
                     }
+                    .frame(width: UIScreen.main.bounds.width*0.7)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 16)
                     .background(Color.white)
@@ -57,20 +45,44 @@ struct WinView: View {
                 .background(Color.clear)
                 .cornerRadius(50)
                 .onTapGesture {
+                    self.viewModel.difficulty = .easy
                     self.viewModel.isPresentingView = .gameRun
                 }
-                .padding(.bottom, 24)
+                .padding(.bottom, 4)
+                
+                Text("High score: \(GameDataBase.standard.getHighScore(difficulty: .easy))")
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundColor(.white)
+                    .padding(.bottom, 24)
                 
                 HStack {
-                    Text("Change difficulty")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.white)
+                    HStack {
+                        Text("Hard")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(Color("PurplePrimary"))
+                        
+                    }
+                    .frame(width: UIScreen.main.bounds.width*0.7)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 16)
+                    .background(Color.white)
+                    .cornerRadius(50)
                 }
                 .padding(.all, 4)
+                .background(Color.clear)
+                .cornerRadius(50)
                 .onTapGesture {
-                    viewModel.isPresentingView = .home
+                    self.viewModel.difficulty = .hard
+                    self.viewModel.isPresentingView = .gameRun
                 }
-                .padding(.bottom, 40)
+                .padding(.bottom, 4)
+                
+                Text("High score: \(GameDataBase.standard.getHighScore(difficulty: .hard))")
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundColor(.white)
+                    .padding(.bottom, 32)
                 
                 HStack {
                     Image(systemName: "app.gift")
@@ -87,19 +99,10 @@ struct WinView: View {
                 .onTapGesture {
                     isShowingOtherApps = true
                 }
-                Spacer()
-                BannerAd(unitID: viewModel.AdMobBannerWin).frame(minHeight: 50, idealHeight: 80, maxHeight: 100, alignment: .bottom)
             }
-            .padding(.vertical, 50)
-        }.sheet(isPresented: $isShowingOtherApps, content: {
+        }
+        .sheet(isPresented: $isShowingOtherApps, content: {
             OtherApps()
         })
     }
 }
-
-struct WinView_Previews: PreviewProvider {
-    static var previews: some View {
-        WinView()
-    }
-}
-
