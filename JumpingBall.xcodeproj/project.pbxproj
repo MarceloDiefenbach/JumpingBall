@@ -3,22 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AD9FF0FD72BAAEFBF6594AE /* Pods_JumpingBall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */; };
 		DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76258291AB48B0045E464 /* JumpingBallApp.swift */; };
 		DFA7625B291AB48B0045E464 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA7625A291AB48B0045E464 /* ContentView.swift */; };
 		DFA7625D291AB48D0045E464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA7625C291AB48D0045E464 /* Assets.xcassets */; };
 		DFA76260291AB48D0045E464 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA7625F291AB48D0045E464 /* Preview Assets.xcassets */; };
+		DFA76267291AB5C60045E464 /* Bird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = DFA76266291AB5C60045E464 /* Bird.atlas */; };
+		DFA7626C291AB5DB0045E464 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA7626B291AB5DB0045E464 /* GameScene.swift */; };
+		DFA7626D291AB5DB0045E464 /* GameDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76268291AB5D80045E464 /* GameDataBase.swift */; };
+		DFA7626F291AB5DB0045E464 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76269291AB5D90045E464 /* AppDelegate.swift */; };
+		DFA76272291AC7910045E464 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76271291AC7900045E464 /* GameViewModel.swift */; };
+		DFA76275291AC8550045E464 /* BannerAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76274291AC8550045E464 /* BannerAd.swift */; };
+		DFA7627A291AD7630045E464 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76279291AD7630045E464 /* WinView.swift */; };
+		DFA7627E291AEBC10045E464 /* OtherAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA7627D291AEBC10045E464 /* OtherAppsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		328487F4162633D9AE1C987D /* Pods-JumpingBall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpingBall.release.xcconfig"; path = "Target Support Files/Pods-JumpingBall/Pods-JumpingBall.release.xcconfig"; sourceTree = "<group>"; };
+		A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JumpingBall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE20F2100BEED1178EC485CA /* Pods-JumpingBall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpingBall.debug.xcconfig"; path = "Target Support Files/Pods-JumpingBall/Pods-JumpingBall.debug.xcconfig"; sourceTree = "<group>"; };
 		DFA76255291AB48B0045E464 /* JumpingBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpingBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA76258291AB48B0045E464 /* JumpingBallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingBallApp.swift; sourceTree = "<group>"; };
 		DFA7625A291AB48B0045E464 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DFA7625C291AB48D0045E464 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFA7625F291AB48D0045E464 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DFA76266291AB5C60045E464 /* Bird.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Bird.atlas; sourceTree = "<group>"; };
+		DFA76268291AB5D80045E464 /* GameDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataBase.swift; sourceTree = "<group>"; };
+		DFA76269291AB5D90045E464 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DFA7626B291AB5DB0045E464 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		DFA76271291AC7900045E464 /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		DFA76274291AC8550045E464 /* BannerAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerAd.swift; sourceTree = "<group>"; };
+		DFA76279291AD7630045E464 /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
+		DFA7627B291ADEE20045E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DFA7627D291AEBC10045E464 /* OtherAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAppsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +47,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD9FF0FD72BAAEFBF6594AE /* Pods_JumpingBall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1453C313C2A0EDF83B0431A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE20F2100BEED1178EC485CA /* Pods-JumpingBall.debug.xcconfig */,
+				328487F4162633D9AE1C987D /* Pods-JumpingBall.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DFA7624C291AB48B0045E464 = {
 			isa = PBXGroup;
 			children = (
 				DFA76257291AB48B0045E464 /* JumpingBall */,
 				DFA76256291AB48B0045E464 /* Products */,
+				1453C313C2A0EDF83B0431A6 /* Pods */,
+				E73909722CC6CFEE41A2B5E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,8 +84,15 @@
 		DFA76257291AB48B0045E464 /* JumpingBall */ = {
 			isa = PBXGroup;
 			children = (
-				DFA76258291AB48B0045E464 /* JumpingBallApp.swift */,
-				DFA7625A291AB48B0045E464 /* ContentView.swift */,
+				DFA7627C291AEBB70045E464 /* OtherApps */,
+				DFA7627B291ADEE20045E464 /* Info.plist */,
+				DFA76266291AB5C60045E464 /* Bird.atlas */,
+				DFA76273291AC8550045E464 /* AdMob */,
+				DFA76277291AC9C00045E464 /* Services */,
+				DFA76276291AC9A50045E464 /* ControllViewAppear */,
+				DFA76278291AD7590045E464 /* WinScreen */,
+				DFA76270291AB5DF0045E464 /* GameView */,
+				DFA76269291AB5D90045E464 /* AppDelegate.swift */,
 				DFA7625C291AB48D0045E464 /* Assets.xcassets */,
 				DFA7625E291AB48D0045E464 /* Preview Content */,
 			);
@@ -67,6 +107,64 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		DFA76270291AB5DF0045E464 /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				DFA7625A291AB48B0045E464 /* ContentView.swift */,
+				DFA7626B291AB5DB0045E464 /* GameScene.swift */,
+			);
+			path = GameView;
+			sourceTree = "<group>";
+		};
+		DFA76273291AC8550045E464 /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				DFA76274291AC8550045E464 /* BannerAd.swift */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
+		DFA76276291AC9A50045E464 /* ControllViewAppear */ = {
+			isa = PBXGroup;
+			children = (
+				DFA76258291AB48B0045E464 /* JumpingBallApp.swift */,
+				DFA76271291AC7900045E464 /* GameViewModel.swift */,
+			);
+			path = ControllViewAppear;
+			sourceTree = "<group>";
+		};
+		DFA76277291AC9C00045E464 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DFA76268291AB5D80045E464 /* GameDataBase.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DFA76278291AD7590045E464 /* WinScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DFA76279291AD7630045E464 /* WinView.swift */,
+			);
+			path = WinScreen;
+			sourceTree = "<group>";
+		};
+		DFA7627C291AEBB70045E464 /* OtherApps */ = {
+			isa = PBXGroup;
+			children = (
+				DFA7627D291AEBC10045E464 /* OtherAppsView.swift */,
+			);
+			path = OtherApps;
+			sourceTree = "<group>";
+		};
+		E73909722CC6CFEE41A2B5E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +172,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DFA76263291AB48D0045E464 /* Build configuration list for PBXNativeTarget "JumpingBall" */;
 			buildPhases = (
+				B35347B013FE5F278F35D1AA /* [CP] Check Pods Manifest.lock */,
 				DFA76251291AB48B0045E464 /* Sources */,
 				DFA76252291AB48B0045E464 /* Frameworks */,
 				DFA76253291AB48B0045E464 /* Resources */,
+				6D44757C22EF676B117CA846 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -103,7 +203,7 @@
 				};
 			};
 			buildConfigurationList = DFA76250291AB48B0045E464 /* Build configuration list for PBXProject "JumpingBall" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -125,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA76267291AB5C60045E464 /* Bird.atlas in Resources */,
 				DFA76260291AB48D0045E464 /* Preview Assets.xcassets in Resources */,
 				DFA7625D291AB48D0045E464 /* Assets.xcassets in Resources */,
 			);
@@ -132,13 +233,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6D44757C22EF676B117CA846 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JumpingBall/Pods-JumpingBall-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JumpingBall/Pods-JumpingBall-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JumpingBall/Pods-JumpingBall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B35347B013FE5F278F35D1AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JumpingBall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DFA76251291AB48B0045E464 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA7627E291AEBC10045E464 /* OtherAppsView.swift in Sources */,
+				DFA7626F291AB5DB0045E464 /* AppDelegate.swift in Sources */,
+				DFA7627A291AD7630045E464 /* WinView.swift in Sources */,
+				DFA7626D291AB5DB0045E464 /* GameDataBase.swift in Sources */,
+				DFA7626C291AB5DB0045E464 /* GameScene.swift in Sources */,
+				DFA76275291AC8550045E464 /* BannerAd.swift in Sources */,
 				DFA7625B291AB48B0045E464 /* ContentView.swift in Sources */,
 				DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */,
+				DFA76272291AC7910045E464 /* GameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +329,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -239,6 +390,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -261,6 +413,7 @@
 		};
 		DFA76264291AB48D0045E464 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE20F2100BEED1178EC485CA /* Pods-JumpingBall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -268,28 +421,36 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JumpingBall/Preview Content\"";
 				DEVELOPMENT_TEAM = 6525BU9D84;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JumpingBall/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Jumping Ball";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.JumpingBall;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.app.JumpingBall-Bounce";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		DFA76265291AB48D0045E464 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 328487F4162633D9AE1C987D /* Pods-JumpingBall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -297,23 +458,30 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JumpingBall/Preview Content\"";
 				DEVELOPMENT_TEAM = 6525BU9D84;
+				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = JumpingBall/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Jumping Ball";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.JumpingBall;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.app.JumpingBall-Bounce";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
