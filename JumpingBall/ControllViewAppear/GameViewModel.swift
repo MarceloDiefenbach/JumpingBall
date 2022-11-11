@@ -29,6 +29,9 @@ class GameViewModel: ObservableObject {
     @Published var didStartGame: Bool = false
     
     @Published var actualScore: Int = 0
+    @Published var coinsCollected: Int = GameDataBase.standard.getCoinsAmount()
     @Published var difficulty: Difficulty = .hard
+    
+    @Published var level: Int = 1
     
 }

@@ -24,13 +24,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var background: SKSpriteNode = SKSpriteNode()
     private var ball: SKSpriteNode = SKSpriteNode()
     
-    // MARK: - Labels Nodes
-    private var startLabel: SKLabelNode = SKLabelNode()
-    private var gameLabel: SKLabelNode = SKLabelNode()
-    private var scoreLabel: SKLabelNode = SKLabelNode()
-    private var hsLabel: SKLabelNode = SKLabelNode()
-    private var hsTextLabel: SKLabelNode = SKLabelNode()
-    
     // MARK: - Animation
     
     private var birdFlyingFrames: [SKTexture] = []
@@ -49,11 +42,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         createBackground()
-        createBird()
-        animateBird()
+        createBall()
         createFloor()
-        createLabel()
-        createHighScoreLabel()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         self.view?.addGestureRecognizer(tapGesture)
@@ -68,11 +58,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if self.viewModel!.didStartGame {
             jump()
         } else {
-            gameLabel.removeFromParent()
-            startLabel.removeFromParent()
-            hsLabel.removeFromParent()
-            hsTextLabel.removeFromParent()
-            createScoreLabel()
             setPhysics()
             self.viewModel!.didStartGame = true
         }
@@ -131,7 +116,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask == ballCategory) &&
                     (contact.bodyB.categoryBitMask == coinCategory) {
-            updateScore()
+            self.viewModel!.coinsCollected += 1
+            print(self.viewModel!.coinsCollected)
             contact.bodyB.node?.removeFromParent()
         } else if (contact.bodyA.categoryBitMask == ballCategory) &&
             (contact.bodyB.categoryBitMask == obstacleCategory) {
@@ -192,7 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Bird
     
-    func createBird() {
+    func createBall() {
         let birdAnimatedAtlas = SKTextureAtlas(named: "Bird")
         var flyFrames: [SKTexture] = []
         
@@ -215,60 +201,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.zPosition = 0.8
         
         addChild(ball)
-    }
-    
-    func animateBird() {
-        ball.run(SKAction.repeatForever(SKAction.animate(with: birdFlyingFrames, timePerFrame: 0.1, resize: false, restore: true)),withKey: "FlyingInPlaceBird")
-    }
-    
-    // MARK: - Labels
-    
-    func createLabel() {
-        gameLabel.attributedText = NSAttributedString(string: "Jumping Ball",
-                                                      attributes: [.font: UIFont.systemFont(ofSize: 40, weight: .semibold),
-                                                                   .foregroundColor: UIColor.white])
-        startLabel.attributedText = NSAttributedString(string: "Tap to start",
-                                                       attributes: [.font: UIFont.systemFont(ofSize: 25, weight: .light),
-                                                                   .foregroundColor: UIColor.white])
-        
-        gameLabel.position = CGPoint(x: 0, y: -(self.scene?.size.width)!/1.5)
-        gameLabel.zPosition = 1
-        
-        startLabel.position = CGPoint(x: 0, y: -(self.scene?.size.width)!/1.3)
-        startLabel.zPosition = 1
-        
-        addChild(gameLabel)
-        addChild(startLabel)
-    }
-    
-    func createScoreLabel() {
-        scoreLabel.attributedText = NSAttributedString(string: "0",
-                                                       attributes: [.font: UIFont.systemFont(ofSize: 35, weight: .semibold),
-                                                                   .foregroundColor: UIColor.white])
-        
-        let scorePosition = CGPoint(x: 0, y: 230)
-        scoreLabel.position = scorePosition
-        scoreLabel.zPosition = 1
-        
-        addChild(scoreLabel)
-    }
-    
-    func createHighScoreLabel() {
-        hsTextLabel.attributedText = NSAttributedString(string: "High score:",
-                                                        attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .semibold),
-                                                                    .foregroundColor: UIColor.white])
-        hsLabel.attributedText = NSAttributedString(string: "\(GameDataBase.standard.getHighScore(difficulty: viewModel!.difficulty))",
-                                                    attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .bold),
-                                                                .foregroundColor: UIColor.white])
-        
-        hsTextLabel.position = CGPoint(x: 0, y: (self.scene?.size.width)!/1.2)
-        hsTextLabel.zPosition = 1
-        
-        hsLabel.position = CGPoint(x: 0, y: (self.scene?.size.width)!/1.35)
-        hsLabel.zPosition = 1
-        
-        addChild(hsTextLabel)
-        addChild(hsLabel)
     }
     
     // MARK: - Pipes
@@ -335,8 +267,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var moveValue: CGFloat = 2
         
-        if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
+//        if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
+//            moveValue = 3
+//        }
+        
+        if viewModel!.level == 1 {
             moveValue = 3
+        }
+        if viewModel!.level == 2 {
+            moveValue = 4
+        }
+        if viewModel!.level == 3 {
+            moveValue = 5
         }
         
         self.enumerateChildNodes(withName: "Obstacle") { node, error in
@@ -385,17 +327,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Score
     
+    func collectCoins() {
+        self.viewModel!.coinsCollected += 1
+        print(self.viewModel!.coinsCollected)
+    }
+    
     func updateScore() {
-        self.viewModel!.actualScore += 1
-        self.scoreLabel.attributedText = NSAttributedString(string: "\(self.viewModel!.actualScore)",
-                                                            attributes: [.font: UIFont.systemFont(ofSize: 35, weight: .semibold),
-                                                                        .foregroundColor: UIColor.white])
+        
+        if self.viewModel!.actualScore == 10 {
+            self.viewModel!.level = 2
+        }
+        if self.viewModel!.actualScore == 20 {
+            self.viewModel!.level = 3
+        }
+        if self.viewModel!.actualScore == 30 {
+            self.viewModel!.level = 4
+        }
+        if self.viewModel!.actualScore == 40 {
+            self.viewModel!.level = 5
+        }
     }
     
     // MARK: - Game Over
     
     func gameOver() {
         GameDataBase.standard.setHighScore(newHighScore: self.viewModel!.actualScore, difficulty: viewModel!.difficulty)
+        GameDataBase.standard.setCoinsAmount(newValue: viewModel!.coinsCollected)
         
         self.viewModel!.isGameOver = true
         self.viewModel!.isPresentingView = .winView
@@ -406,6 +363,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        if ball.position.x != -((self.scene?.size.width)! / 2) * 0.6 {
+            ball.position.x = -((self.scene?.size.width)! / 2) * 0.6
+        }
         
         if self.viewModel!.isGameOver {
             let newScene = GameScene()
@@ -432,21 +393,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if ((self.viewModel?.didStartGame) != false) {
             
-            var time: Double = 3.0
+            var obstacleTime: Double = 3.0
+            var cointTime: Double = 1.5
             
-//            if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
-//                time = 2.0
-//            }
+            if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
+                obstacleTime = 1.5
+                cointTime = 2.0
+            }
             
-            if deltaTime > time {
+            if deltaTime > obstacleTime {
                 
                 createObstacle()
                 
                 lastCurrentTime = currentTime
                 controlCoinCreate = true
+                self.viewModel!.actualScore += 1
             }
             
-            if deltaTime > 1.5 && controlCoinCreate == true {
+            if deltaTime > cointTime && controlCoinCreate == true {
                 createCoin(sizeTop: 1)
                 controlCoinCreate = false
             }
@@ -455,6 +419,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setPipesPhysics()
         
         removePipes()
+        
+        updateScore()
 
     }
     

@@ -20,6 +20,28 @@ struct HomeView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
+            
+            VStack (alignment: .leading) {
+                HStack {
+                    Image("coin")
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                    
+                    Text("\(viewModel.coinsCollected)")
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.black)
+                    
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .background(Color.white)
+                .cornerRadius(20)
+                .padding(.top, 40)
+                
+                Spacer()
+            }.padding(.leading, 20)
+            
             VStack {
                 
                 Text("Select the difficulty\nyou are ready to play")

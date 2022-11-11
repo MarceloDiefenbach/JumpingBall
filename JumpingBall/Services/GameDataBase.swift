@@ -13,6 +13,7 @@ class GameDataBase {
     
     private let highScoreKeyEasy: String = "scoreEasy"
     private let highScoreKeyHard: String = "scoreHard"
+    private let coinsAmountKey: String = "coinsAmount"
     
     private init() {}
     
@@ -41,5 +42,13 @@ class GameDataBase {
                 userDefaults.setValue(newHighScore, forKey: highScoreKeyHard)
             }
         }
+    }
+    
+    func setCoinsAmount(newValue: Int) {
+        userDefaults.setValue(newValue, forKey: coinsAmountKey)
+    }
+    
+    func getCoinsAmount() -> Int {
+        return userDefaults.integer(forKey: coinsAmountKey)
     }
 }
