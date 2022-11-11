@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0AD9FF0FD72BAAEFBF6594AE /* Pods_JumpingBall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */; };
 		DF5AC9A4291C2340002CF78E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5AC9A3291C2340002CF78E /* HomeView.swift */; };
+		DF7FBC89291E6DEF00AF7928 /* GameSceneNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */; };
 		DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76258291AB48B0045E464 /* JumpingBallApp.swift */; };
 		DFA7625B291AB48B0045E464 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA7625A291AB48B0045E464 /* GameView.swift */; };
 		DFA7625D291AB48D0045E464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA7625C291AB48D0045E464 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JumpingBall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE20F2100BEED1178EC485CA /* Pods-JumpingBall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpingBall.debug.xcconfig"; path = "Target Support Files/Pods-JumpingBall/Pods-JumpingBall.debug.xcconfig"; sourceTree = "<group>"; };
 		DF5AC9A3291C2340002CF78E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneNew.swift; sourceTree = "<group>"; };
 		DFA76255291AB48B0045E464 /* JumpingBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpingBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA76258291AB48B0045E464 /* JumpingBallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingBallApp.swift; sourceTree = "<group>"; };
 		DFA7625A291AB48B0045E464 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				DFA7625A291AB48B0045E464 /* GameView.swift */,
 				DFA7626B291AB5DB0045E464 /* GameScene.swift */,
+				DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				DFA7626F291AB5DB0045E464 /* AppDelegate.swift in Sources */,
 				DFA7627A291AD7630045E464 /* WinView.swift in Sources */,
 				DF5AC9A4291C2340002CF78E /* HomeView.swift in Sources */,
+				DF7FBC89291E6DEF00AF7928 /* GameSceneNew.swift in Sources */,
 				DFA7626D291AB5DB0045E464 /* GameDataBase.swift in Sources */,
 				DFA7626C291AB5DB0045E464 /* GameScene.swift in Sources */,
 				DFA76275291AC8550045E464 /* BannerAd.swift in Sources */,

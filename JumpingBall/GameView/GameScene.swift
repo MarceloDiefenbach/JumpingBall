@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Game
     private var outsidePipe: Bool = true
     private var pointsToChangeDifficultyOfHard: Int = 20
+    private var controlCoinCreate: Bool = true
     
     // MARK: - Nodes
     private var background: SKSpriteNode = SKSpriteNode()
@@ -36,8 +37,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Collision
     
-    let birdCategory: UInt32 = 1 << 3
-    let pipeCategory: UInt32 = 1 << 2
+    let coinCategory: UInt32 = 1 << 4
+    let ballCategory: UInt32 = 1 << 3
+    let obstacleCategory: UInt32 = 1 << 2
     let floorCategory: UInt32 = 1 << 1
     
     // MARK: - Init
@@ -94,12 +96,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         birdPhysicsBody.affectedByGravity = true
         birdPhysicsBody.restitution = 0
         birdPhysicsBody.usesPreciseCollisionDetection = true
-        birdPhysicsBody.categoryBitMask = birdCategory
-        birdPhysicsBody.collisionBitMask = birdCategory | pipeCategory | floorCategory
-        birdPhysicsBody.contactTestBitMask = birdCategory | pipeCategory | floorCategory
+        birdPhysicsBody.categoryBitMask = ballCategory
+        birdPhysicsBody.collisionBitMask = ballCategory | obstacleCategory | floorCategory | coinCategory
+        birdPhysicsBody.contactTestBitMask = ballCategory | obstacleCategory | floorCategory | coinCategory
         ball.physicsBody = birdPhysicsBody
         
-        let floor = SKSpriteNode(color: .clear, size: CGSize(width: (self.scene?.size.width)!, height: (self.scene?.size.height)!*0.15))
+        let floor = SKSpriteNode(color: .clear, size: CGSize(width: (self.scene?.size.width)!, height: 1))
         floor.position = CGPoint(x: 0, y: -((self.scene?.size.height)! / 2))
         floor.zPosition = 0
         
@@ -127,10 +129,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Collision
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if (contact.bodyA.categoryBitMask == birdCategory) &&
-            (contact.bodyB.categoryBitMask == pipeCategory) {
+        if (contact.bodyA.categoryBitMask == ballCategory) &&
+                    (contact.bodyB.categoryBitMask == coinCategory) {
+            updateScore()
+            contact.bodyB.node?.removeFromParent()
+        } else if (contact.bodyA.categoryBitMask == ballCategory) &&
+            (contact.bodyB.categoryBitMask == obstacleCategory) {
             gameOver()
-        } else if (contact.bodyA.categoryBitMask == birdCategory) &&
+        } else if (contact.bodyA.categoryBitMask == ballCategory) &&
                     (contact.bodyB.categoryBitMask == floorCategory) {
             gameOver()
         }
@@ -158,7 +164,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let floor = SKSpriteNode()
             floor.name = "Floor"
             
-            let floorSize = CGSize(width: (self.scene?.size.width)!, height: (self.scene?.size.height)!)
+            let floorSize = CGSize(width: (self.scene?.size.width)!, height: 1)
             floor.size = floorSize
             
             let floorPosition = CGPoint(x: (CGFloat(index) * (self.scene?.size.width)!), y: 0)
@@ -268,79 +274,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Pipes
     
     
-    func rotatePipe(node: SKSpriteNode) {
+    func rotateObstacle(node: SKSpriteNode) {
         var rotateAction: SKAction
-        var rotetaReverse: SKAction
         
-        rotateAction = SKAction.rotate(byAngle: -0.13, duration: 1)
-        rotetaReverse = SKAction.rotate(byAngle: +0.35, duration: 2)
+        rotateAction = SKAction.rotate(byAngle: CGFloat(180), duration: 1)
         
-        let rotateSequence = SKAction.sequence([rotateAction, rotetaReverse])
+        let rotateSequence = SKAction.sequence([rotateAction])
         let rotateRepeat = SKAction.repeatForever(rotateSequence)
         
         node.run(rotateRepeat)
     }
     
-    func createTopPipe(sizeTop: Int) {
-        let topPipe = SKSpriteNode(imageNamed: "Pipe")
-        topPipe.name = "TopPipe"
+    func createObstacle() {
+        let obstacle = SKSpriteNode(imageNamed: "Pipe")
+        obstacle.name = "Obstacle"
         
-        let pipeHeight = (self.scene?.size.height)!
+        let obstacleSize = CGSize(width: 30, height: 200)
+        obstacle.size = obstacleSize
         
-        let pipeSize = CGSize(width: 83, height: pipeHeight)
-        topPipe.size = pipeSize
+        obstacle.physicsBody = SKPhysicsBody(rectangleOf: obstacle.frame.size)
+        obstacle.physicsBody!.affectedByGravity = false
+        obstacle.physicsBody!.usesPreciseCollisionDetection = true
+        obstacle.physicsBody!.isDynamic = false
         
-        topPipe.physicsBody = SKPhysicsBody(rectangleOf: topPipe.frame.size)
-        topPipe.physicsBody!.affectedByGravity = false
-        topPipe.physicsBody!.usesPreciseCollisionDetection = true
-        topPipe.physicsBody!.isDynamic = false
+        obstacle.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        topPipe.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        obstacle.position.x = (self.scene?.size.width)!/2 + 180
+        obstacle.position.y = CGFloat(getRandomPositionToObstacle())
+        obstacle.zPosition = 0.8
         
-        let yInf = Int((self.scene?.size.height)!)/2 - sizeTop
-        let yPipe = yInf + Int(pipeHeight/2)
-        let xPipe = (self.scene?.size.width)!/2 + 30
-        topPipe.position.x = xPipe
-        topPipe.position.y = CGFloat(yPipe)
-        topPipe.zPosition = 0.8
+        rotateObstacle(node: obstacle)
         
-        if viewModel?.difficulty == .hard {
-            rotatePipe(node: topPipe)
-        }
-        
-        addChild(topPipe)
+        addChild(obstacle)
     }
     
-    func createBottomPipe(sizeBottom: Int) {
-        let bottomPipe = SKSpriteNode(imageNamed: "Pipe")
-        bottomPipe.name = "BottomPipe"
+    func createCoin(sizeTop: Int) {
+        let coin = SKSpriteNode(imageNamed: "coin")
+        coin.name = "coin"
         
-        let pipeHeight = (self.scene?.size.height)!
+        let coinSize = CGSize(width: 40, height: 40)
+        coin.size = coinSize
         
-        let pipeSize = CGSize(width: 83, height: pipeHeight)
-        bottomPipe.size = pipeSize
+        coin.physicsBody = SKPhysicsBody(rectangleOf: coin.frame.size)
+        coin.physicsBody!.affectedByGravity = false
+        coin.physicsBody!.usesPreciseCollisionDetection = true
+        coin.physicsBody!.isDynamic = false
+        coin.physicsBody!.categoryBitMask = coinCategory
         
-        bottomPipe.physicsBody = SKPhysicsBody(rectangleOf: bottomPipe.frame.size)
-        bottomPipe.physicsBody!.affectedByGravity = false
-        bottomPipe.physicsBody!.isDynamic = false
-        bottomPipe.physicsBody!.usesPreciseCollisionDetection = true
+        coin.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        bottomPipe.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        let xPipe = (self.scene?.size.width)!/2 + 40
+        coin.position.x = xPipe
+        coin.position.y = CGFloat(getRandomPositionToObstacle())
+        coin.zPosition = 0.8
         
-        bottomPipe.yScale = bottomPipe.yScale * -1
-        
-        let yInf = -Int((self.scene?.size.height)!)/2 + sizeBottom
-        let yPipe = yInf - Int(pipeHeight/2)
-        let xPipe = (self.scene?.size.width)!/2 + 30
-        bottomPipe.position.x = xPipe
-        bottomPipe.position.y = CGFloat(yPipe)
-        bottomPipe.zPosition = 0.8
-        
-        if viewModel?.difficulty == .hard {
-            rotatePipe(node: bottomPipe)
-        }
-        
-        addChild(bottomPipe)
+        addChild(coin)
     }
     
     func movePipes() {
@@ -351,13 +339,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveValue = 3
         }
         
-        self.enumerateChildNodes(withName: "TopPipe") { node, error in
+        self.enumerateChildNodes(withName: "Obstacle") { node, error in
             node.position.x -= moveValue
             if node.position.x < -((self.scene?.size.width)!) {
                 node.position.x += ((self.scene?.size.width)! * 3)
             }
         }
-        self.enumerateChildNodes(withName: "BottomPipe") { node, error in
+        self.enumerateChildNodes(withName: "coin") { node, error in
             node.position.x -= moveValue
             if node.position.x < -((self.scene?.size.width)!) {
                 node.position.x += ((self.scene?.size.width)! * 3)
@@ -367,49 +355,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setPipesPhysics() {
-        self.enumerateChildNodes(withName: "TopPipe") { node, error in
+
+        self.enumerateChildNodes(withName: "Obstacle") { node, error in
             guard let body = node.physicsBody else { return }
             body.usesPreciseCollisionDetection = true
-            body.categoryBitMask = self.pipeCategory
+            body.categoryBitMask = self.obstacleCategory
         }
-        
-        self.enumerateChildNodes(withName: "BottomPipe") { node, error in
+        self.enumerateChildNodes(withName: "coin") { node, error in
             guard let body = node.physicsBody else { return }
             body.usesPreciseCollisionDetection = true
-            body.categoryBitMask = self.pipeCategory
+            body.categoryBitMask = self.coinCategory
         }
     }
     
     func removePipes() {
-        self.enumerateChildNodes(withName: "TopPipe") { node, error in
+        self.enumerateChildNodes(withName: "Obstacle") { node, error in
             if node.position.x <= -((self.scene?.size.width)!)/2 - 100{
                 node.removeFromParent()
             }
         }
         
-        self.enumerateChildNodes(withName: "BottomPipe") { node, error in
+        self.enumerateChildNodes(withName: "coin") { node, error in
             if node.position.x <= -((self.scene?.size.width)!)/2 - 100 {
                 node.removeFromParent()
             }
         }
+        
     }
     
     // MARK: - Score
     
     func updateScore() {
-        self.enumerateChildNodes(withName: "TopPipe") { node, error in
-            if self.outsidePipe {
-                if node.position.x - 41 <= self.ball.position.x && self.ball.position.x <= node.position.x + 41 {
-                    self.outsidePipe = false
-                }
-            } else if self.ball.position.x >= node.position.x + 41 {
-                self.viewModel!.actualScore += 1
-                self.scoreLabel.attributedText = NSAttributedString(string: "\(self.viewModel!.actualScore)",
-                                                                    attributes: [.font: UIFont.systemFont(ofSize: 35, weight: .semibold),
-                                                                                .foregroundColor: UIColor.white])
-                self.outsidePipe = true
-            }
-        }
+        self.viewModel!.actualScore += 1
+        self.scoreLabel.attributedText = NSAttributedString(string: "\(self.viewModel!.actualScore)",
+                                                            attributes: [.font: UIFont.systemFont(ofSize: 35, weight: .semibold),
+                                                                        .foregroundColor: UIColor.white])
     }
     
     // MARK: - Game Over
@@ -454,29 +434,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var time: Double = 3.0
             
-            if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
-                time = 2.0
-            }
+//            if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
+//                time = 2.0
+//            }
             
             if deltaTime > time {
-                let maxTop = (self.scene?.size.height)! - self.ball.size.height*3.5 - (self.scene?.size.height)!*0.15
-                let topValue = Int.random(in: Int((self.scene?.size.height)!*0.15)..<Int(maxTop))
-                let bottomValue = Int(maxTop) - topValue + Int((self.scene?.size.height)!*0.15)
                 
-                createTopPipe(sizeTop: topValue)
-                createBottomPipe(sizeBottom: bottomValue)
+                createObstacle()
                 
                 lastCurrentTime = currentTime
+                controlCoinCreate = true
+            }
+            
+            if deltaTime > 1.5 && controlCoinCreate == true {
+                createCoin(sizeTop: 1)
+                controlCoinCreate = false
             }
             movePipes()
         }
-        
         setPipesPhysics()
         
         removePipes()
-        
-        updateScore()
 
+    }
+    
+    //MARK: - logic functions
+    
+    func getRandomPositionToObstacle() -> Int {
+        let random = Int.random(in: Int(-(self.scene?.size.height)!/2)..<Int((self.scene?.size.height)!/2))
+        return random
     }
 }
 
