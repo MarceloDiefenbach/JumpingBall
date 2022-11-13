@@ -7,5 +7,6 @@ target 'JumpingBall' do
 
   # Pods for JumpingBall
   pod 'Google-Mobile-Ads-SDK'
+  pod 'FirebaseAnalytics'
 
 end

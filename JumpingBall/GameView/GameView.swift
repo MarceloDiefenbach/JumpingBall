@@ -27,7 +27,7 @@ struct GameView: View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                BannerAd(unitID: viewModel.AdMobBannerHome).frame(height: 50)
+                BannerAd(unitID: viewModel.AdMobBannerGame).frame(height: 50)
                     .padding(.bottom, 30)
             }
             if viewModel.didStartGame {

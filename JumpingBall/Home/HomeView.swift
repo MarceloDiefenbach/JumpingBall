@@ -122,6 +122,12 @@ struct HomeView: View {
                     isShowingOtherApps = true
                 }
             }
+            
+            VStack {
+                Spacer()
+                BannerAd(unitID: viewModel.AdMobBannerHome).frame(height: 100)
+                    .padding(.bottom, 30)
+            }
         }
         .sheet(isPresented: $isShowingOtherApps, content: {
             OtherApps()
