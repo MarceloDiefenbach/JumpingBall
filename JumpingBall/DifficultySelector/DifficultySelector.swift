@@ -121,6 +121,31 @@ struct DifficultySelector: View {
                 .onTapGesture {
                     isShowingOtherApps = true
                 }
+                
+                HStack {
+                    HStack {
+                        Image(systemName: "house.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(Color("PurplePrimary"))
+                        Text("Back to home")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color("PurplePrimary"))
+                        
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 8)
+                    .background(Color.white)
+                    .cornerRadius(50)
+                }
+                .padding(.all, 4)
+                .background(Color.clear)
+                .cornerRadius(50)
+                .onTapGesture {
+                    viewModel.isPresentingView = .home
+                }
+                .padding(.top, 40)
             }
             
             VStack {
