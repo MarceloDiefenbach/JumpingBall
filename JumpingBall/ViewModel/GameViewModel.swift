@@ -20,8 +20,8 @@ class GameViewModel: ObservableObject {
     @Published var AdMobBannerHome: String = "ca-app-pub-7490663355066325/4061015077"
     @Published var AdMobBannerWin: String = "ca-app-pub-7490663355066325/2744063979"
     @Published var AdMobBannerGame: String = "ca-app-pub-7490663355066325/8938501885"
-    //    @Published var AdMobBannerHome: String = "ca-app-pub-3940256099942544/2934735716"
-    //    @Published var AdMobBannerWin: String = "ca-app-pub-3940256099942544/2934735716"
+//    @Published var AdMobBannerHome: String = "ca-app-pub-3940256099942544/2934735716"
+//    @Published var AdMobBannerWin: String = "ca-app-pub-3940256099942544/2934735716"
 //    @Published var AdMobBannerGame: String = "ca-app-pub-3940256099942544/2934735716"
     
     @Published var isPresentingGameView: Bool = false
@@ -35,6 +35,8 @@ class GameViewModel: ObservableObject {
     @Published var difficulty: Difficulty = .hard
     
     @Published var level: Int = 1
+    
+    @Published var reward = Reward()
     
     func restartGame() {
         isPresentingView = .gameRun

@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
+    @State var isShowingRewardsView: Bool = false
     
     var body: some View {
         ZStack {
@@ -88,11 +89,13 @@ struct HomeView: View {
                 .background(Color.clear)
                 .cornerRadius(50)
                 .onTapGesture {
-//                    viewModel.isPresentingView = .rewards
+                    isShowingRewardsView = true
                 }
                 .padding(.bottom, UIScreen.main.bounds.height*0.15)
             }
-        }
+        }.sheet(isPresented: $isShowingRewardsView, content: {
+            RewardsView()
+        })
     }
     
 }

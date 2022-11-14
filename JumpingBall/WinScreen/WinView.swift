@@ -15,8 +15,6 @@ struct WinView: View {
     
     @State var collectedDiamonds: Int = 0
     
-    @ObservedObject var reward = Reward()
-    
     var body: some View {
         ZStack {
             ZStack {
@@ -69,16 +67,12 @@ struct WinView: View {
                     .background(Color("PurpleSecondary"))
                     .cornerRadius(50)
                     .onTapGesture {
-                        //                        DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
-                        //                            reward.ShowReward(viewModel: viewModel)
-                        //                        })
-                        print(UIScreen.main.bounds.width)
-                        hasNotch()
+                        print("clicou")
+                        DispatchQueue.main.async {
+                            viewModel.reward.ShowReward(viewModel: viewModel)
+                        }
                     }
-                    .onAppear() {
-                        reward.LoadReward()
-                    }
-                    .disabled(!reward.rewardLoaded)
+                    .disabled(!viewModel.reward.rewardLoaded)
                     .padding(.bottom, 24)
                     
                     Text("Or start over from zero")

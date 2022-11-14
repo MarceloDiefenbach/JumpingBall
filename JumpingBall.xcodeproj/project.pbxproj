@@ -10,9 +10,10 @@
 		0AD9FF0FD72BAAEFBF6594AE /* Pods_JumpingBall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */; };
 		DF017ACB2922749400BB55FC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF017ACA2922749400BB55FC /* GoogleService-Info.plist */; };
 		DF017ACE2922873400BB55FC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF017ACD2922873400BB55FC /* HomeView.swift */; };
+		DF017AD129229B9F00BB55FC /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF017AD029229B9F00BB55FC /* RewardsView.swift */; };
+		DF017AD42922A37300BB55FC /* RewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF017AD32922A37300BB55FC /* RewardCell.swift */; };
 		DF5AC9A4291C2340002CF78E /* DifficultySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5AC9A3291C2340002CF78E /* DifficultySelector.swift */; };
 		DF7150FB2921C4E000382B56 /* RewardedAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7150FA2921C4E000382B56 /* RewardedAd.swift */; };
-		DF7FBC89291E6DEF00AF7928 /* GameSceneNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */; };
 		DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76258291AB48B0045E464 /* JumpingBallApp.swift */; };
 		DFA7625B291AB48B0045E464 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA7625A291AB48B0045E464 /* GameView.swift */; };
 		DFA7625D291AB48D0045E464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFA7625C291AB48D0045E464 /* Assets.xcassets */; };
@@ -33,9 +34,10 @@
 		CE20F2100BEED1178EC485CA /* Pods-JumpingBall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpingBall.debug.xcconfig"; path = "Target Support Files/Pods-JumpingBall/Pods-JumpingBall.debug.xcconfig"; sourceTree = "<group>"; };
 		DF017ACA2922749400BB55FC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF017ACD2922873400BB55FC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DF017AD029229B9F00BB55FC /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
+		DF017AD32922A37300BB55FC /* RewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardCell.swift; sourceTree = "<group>"; };
 		DF5AC9A3291C2340002CF78E /* DifficultySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultySelector.swift; sourceTree = "<group>"; };
 		DF7150FA2921C4E000382B56 /* RewardedAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAd.swift; sourceTree = "<group>"; };
-		DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneNew.swift; sourceTree = "<group>"; };
 		DFA76255291AB48B0045E464 /* JumpingBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpingBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA76258291AB48B0045E464 /* JumpingBallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingBallApp.swift; sourceTree = "<group>"; };
 		DFA7625A291AB48B0045E464 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,22 @@
 			path = DifficultySelector;
 			sourceTree = "<group>";
 		};
+		DF017ACF29229B8800BB55FC /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				DF017AD029229B9F00BB55FC /* RewardsView.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		DF017AD22922A36900BB55FC /* Componentes */ = {
+			isa = PBXGroup;
+			children = (
+				DF017AD32922A37300BB55FC /* RewardCell.swift */,
+			);
+			path = Componentes;
+			sourceTree = "<group>";
+		};
 		DF5AC9A2291C2339002CF78E /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,17 +129,17 @@
 		DFA76257291AB48B0045E464 /* JumpingBall */ = {
 			isa = PBXGroup;
 			children = (
+				DF017AD22922A36900BB55FC /* Componentes */,
 				DFA7627B291ADEE20045E464 /* Info.plist */,
 				DFA76266291AB5C60045E464 /* Bird.atlas */,
+				DFA76276291AC9A50045E464 /* ViewModel */,
 				DF5AC9A2291C2339002CF78E /* Home */,
 				DF017ACC2922872800BB55FC /* DifficultySelector */,
 				DFA7627C291AEBB70045E464 /* OtherApps */,
-				DFA76276291AC9A50045E464 /* ViewModel */,
+				DF017ACF29229B8800BB55FC /* Store */,
 				DFA76270291AB5DF0045E464 /* GameView */,
 				DFA76278291AD7590045E464 /* WinScreen */,
 				DFA76273291AC8550045E464 /* AdMob */,
-				DFA76274291AC8550045E464 /* BannerAd.swift */,
-				DF7150FA2921C4E000382B56 /* RewardedAd.swift */,
 				DFA76277291AC9C00045E464 /* Services */,
 				DFA76258291AB48B0045E464 /* JumpingBallApp.swift */,
 				DFA76269291AB5D90045E464 /* AppDelegate.swift */,
@@ -144,7 +162,6 @@
 			children = (
 				DFA7625A291AB48B0045E464 /* GameView.swift */,
 				DFA7626B291AB5DB0045E464 /* GameScene.swift */,
-				DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -152,6 +169,8 @@
 		DFA76273291AC8550045E464 /* AdMob */ = {
 			isa = PBXGroup;
 			children = (
+				DFA76274291AC8550045E464 /* BannerAd.swift */,
+				DF7150FA2921C4E000382B56 /* RewardedAd.swift */,
 			);
 			path = AdMob;
 			sourceTree = "<group>";
@@ -313,12 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA7627E291AEBC10045E464 /* OtherAppsView.swift in Sources */,
+				DF017AD129229B9F00BB55FC /* RewardsView.swift in Sources */,
+				DF017AD42922A37300BB55FC /* RewardCell.swift in Sources */,
 				DFA7626F291AB5DB0045E464 /* AppDelegate.swift in Sources */,
 				DF017ACE2922873400BB55FC /* HomeView.swift in Sources */,
 				DF7150FB2921C4E000382B56 /* RewardedAd.swift in Sources */,
 				DFA7627A291AD7630045E464 /* WinView.swift in Sources */,
 				DF5AC9A4291C2340002CF78E /* DifficultySelector.swift in Sources */,
-				DF7FBC89291E6DEF00AF7928 /* GameSceneNew.swift in Sources */,
 				DFA7626D291AB5DB0045E464 /* GameDataBase.swift in Sources */,
 				DFA7626C291AB5DB0045E464 /* GameScene.swift in Sources */,
 				DFA76275291AC8550045E464 /* BannerAd.swift in Sources */,

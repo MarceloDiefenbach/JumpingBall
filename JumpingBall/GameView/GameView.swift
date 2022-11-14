@@ -63,6 +63,11 @@ struct GameView: View {
                 
                 Spacer()
             }.padding(.leading, 20)
+            .onAppear() {
+                DispatchQueue.main.async {
+                    viewModel.reward.LoadReward()
+                }
+            }
         }
     }
 }
