@@ -17,8 +17,9 @@ struct HomeView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             
-            VStack (alignment: .leading) {
+            VStack {
                 HStack {
                     Image("coin")
                         .resizable()

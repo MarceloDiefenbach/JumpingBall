@@ -20,6 +20,7 @@ struct DifficultySelector: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             
             VStack (alignment: .leading) {
                 HStack {
