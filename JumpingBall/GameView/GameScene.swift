@@ -380,7 +380,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             self.viewModel!.isGameOver = false
             self.viewModel!.didStartGame = false
-            self.viewModel!.actualScore = 0
         }
         
         if lastCurrentTime == -1 {

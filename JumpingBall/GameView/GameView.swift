@@ -30,21 +30,14 @@ struct GameView: View {
                 BannerAd(unitID: viewModel.AdMobBannerGame).frame(height: 50)
                     .padding(.bottom, 30)
             }
-            if viewModel.didStartGame {
-                VStack {
-                    Text("Level: \(viewModel.level)")
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 24, weight: .light))
-                        .foregroundColor(.white)
-                        .padding(.bottom, 8)
-                    
-                    Text("\(viewModel.actualScore)")
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(.white)
-                    
-                    Spacer()
-                }
+            VStack {
+                Text("\(viewModel.actualScore)")
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 32, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(.top, 40)
+                
+                Spacer()
             }
             VStack (alignment: .leading) {
                 HStack {

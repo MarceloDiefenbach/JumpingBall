@@ -10,8 +10,8 @@ import GoogleMobileAds
 
 struct BannerAd: UIViewRepresentable {
     
-        @State var height: CGFloat = 50 //Height of ad
-        @State var width: CGFloat = 0 //Width of ad
+    @State var height: CGFloat = 50 //Height of ad
+    @State var width: CGFloat = 0 //Width of ad
     var unitID: String
 
     func makeCoordinator() -> Coordinator {

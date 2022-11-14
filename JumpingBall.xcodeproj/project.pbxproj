@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0AD9FF0FD72BAAEFBF6594AE /* Pods_JumpingBall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */; };
 		DF5AC9A4291C2340002CF78E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5AC9A3291C2340002CF78E /* HomeView.swift */; };
+		DF7150FB2921C4E000382B56 /* RewardedAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7150FA2921C4E000382B56 /* RewardedAd.swift */; };
 		DF7FBC89291E6DEF00AF7928 /* GameSceneNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */; };
 		DF9F62D929211C0F004C6AF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF9F62D829211C0F004C6AF6 /* GoogleService-Info.plist */; };
 		DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76258291AB48B0045E464 /* JumpingBallApp.swift */; };
@@ -30,6 +31,7 @@
 		A8273608B29B7EFFA7F6BD09 /* Pods_JumpingBall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JumpingBall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE20F2100BEED1178EC485CA /* Pods-JumpingBall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JumpingBall.debug.xcconfig"; path = "Target Support Files/Pods-JumpingBall/Pods-JumpingBall.debug.xcconfig"; sourceTree = "<group>"; };
 		DF5AC9A3291C2340002CF78E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		DF7150FA2921C4E000382B56 /* RewardedAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAd.swift; sourceTree = "<group>"; };
 		DF7FBC88291E6DEF00AF7928 /* GameSceneNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneNew.swift; sourceTree = "<group>"; };
 		DF9F62D829211C0F004C6AF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DFA76255291AB48B0045E464 /* JumpingBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpingBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				DFA76274291AC8550045E464 /* BannerAd.swift */,
+				DF7150FA2921C4E000382B56 /* RewardedAd.swift */,
 			);
 			path = AdMob;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			files = (
 				DFA7627E291AEBC10045E464 /* OtherAppsView.swift in Sources */,
 				DFA7626F291AB5DB0045E464 /* AppDelegate.swift in Sources */,
+				DF7150FB2921C4E000382B56 /* RewardedAd.swift in Sources */,
 				DFA7627A291AD7630045E464 /* WinView.swift in Sources */,
 				DF5AC9A4291C2340002CF78E /* HomeView.swift in Sources */,
 				DF7FBC89291E6DEF00AF7928 /* GameSceneNew.swift in Sources */,
@@ -438,7 +442,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"JumpingBall/Preview Content\"";
 				DEVELOPMENT_TEAM = 6525BU9D84;
 				ENABLE_BITCODE = NO;
@@ -456,7 +460,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.JumpingBall-Bounce";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -475,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"JumpingBall/Preview Content\"";
 				DEVELOPMENT_TEAM = 6525BU9D84;
 				ENABLE_BITCODE = NO;
@@ -493,7 +497,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.app.JumpingBall-Bounce";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

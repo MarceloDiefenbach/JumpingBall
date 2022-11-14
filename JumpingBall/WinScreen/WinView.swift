@@ -12,6 +12,10 @@ struct WinView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
     @State var isShowingOtherApps: Bool = false
+    
+    @State var collectedDiamonds: Int = 0
+    
+    @ObservedObject var reward = Reward()
 
     var body: some View {
         ZStack {
@@ -41,10 +45,10 @@ struct WinView: View {
                         Image(systemName: "play.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20)
+                            .frame(width: 16, height: 16)
                             .foregroundColor(Color("PurplePrimary"))
-                        Text("Tap to restart")
-                            .font(.system(size: 20, weight: .bold))
+                        Text("Restart")
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color("PurplePrimary"))
                         
                     }
@@ -57,8 +61,40 @@ struct WinView: View {
                 .background(Color.clear)
                 .cornerRadius(50)
                 .onTapGesture {
-                    self.viewModel.isPresentingView = .gameRun
+                    viewModel.restartGame()
                 }
+                
+                VStack {
+                    HStack {
+                        Image(systemName: "film")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Color("PurplePrimary"))
+                        Text("Continue with your points")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(Color("PurplePrimary"))
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 16)
+                    .background(Color.white)
+                    .cornerRadius(50)
+                    Text("Watch an ad")
+                        .font(.system(size: 8, weight: .bold))
+                        .foregroundColor(Color("PurplePrimary"))
+                }
+                .padding(.all, 4)
+                .background(Color.clear)
+                .cornerRadius(50)
+                .onTapGesture {
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                        reward.ShowReward(viewModel: viewModel)
+                    })
+                }
+                .onAppear() {
+                    reward.LoadReward()
+                }
+                .disabled(!reward.rewardLoaded)
                 .padding(.bottom, 24)
                 
                 HStack {
@@ -68,7 +104,7 @@ struct WinView: View {
                 }
                 .padding(.all, 4)
                 .onTapGesture {
-                    viewModel.isPresentingView = .home
+                    viewModel.goToHome()
                 }
                 .padding(.bottom, 40)
                 
@@ -88,7 +124,8 @@ struct WinView: View {
                     isShowingOtherApps = true
                 }
                 Spacer()
-                BannerAd(unitID: viewModel.AdMobBannerWin).frame(minHeight: 50, idealHeight: 80, maxHeight: 100, alignment: .bottom)
+//                BannerAd(unitID: viewModel.AdMobBannerHome).frame(height: 100)
+//                    .padding(.bottom, 30)
             }
             .padding(.vertical, 50)
         }.sheet(isPresented: $isShowingOtherApps, content: {
