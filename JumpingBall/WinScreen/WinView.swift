@@ -16,121 +16,131 @@ struct WinView: View {
     @State var collectedDiamonds: Int = 0
     
     @ObservedObject var reward = Reward()
-
+    
     var body: some View {
         ZStack {
-            Image("Background")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .ignoresSafeArea()
-            VStack {
-                Spacer()
-                Text("YOUR SCORE")
-                    .font(.system(size: 24, weight: .regular))
-                    .foregroundColor(.white)
-                Text("\(viewModel.actualScore)")
-                    .font(.system(size: 56, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 24)
-                Text("HIGH SCORE")
-                    .font(.system(size: 24, weight: .regular))
-                    .foregroundColor(.white)
-                Text("\(GameDataBase.standard.getHighScore(difficulty: self.viewModel.difficulty))")
-                    .font(.system(size: 56, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 40)
-                
-                HStack {
-                    HStack {
-                        Image(systemName: "play.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 16, height: 16)
-                            .foregroundColor(Color("PurplePrimary"))
-                        Text("Restart")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color("PurplePrimary"))
-                        
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 16)
-                    .background(Color.white)
-                    .cornerRadius(50)
-                }
-                .padding(.all, 4)
-                .background(Color.clear)
-                .cornerRadius(50)
-                .onTapGesture {
-                    viewModel.restartGame()
+            ZStack {
+                Image("End")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            }
+            
+            ZStack {
+                VStack {
+                    Text("Your score")
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundColor(.white)
+                        .padding(.top, (hasNotch() ? UIScreen.main.bounds.height*0.05 : UIScreen.main.bounds.height*0.1))
+                    Text("\(viewModel.actualScore)")
+                        .font(.system(size: 56, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 24)
+                    
+                    Spacer()
                 }
                 
                 VStack {
-                    HStack {
-                        Image(systemName: "film")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(Color("PurplePrimary"))
-                        Text("Continue with your points")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(Color("PurplePrimary"))
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 16)
-                    .background(Color.white)
-                    .cornerRadius(50)
-                    Text("Watch an ad")
-                        .font(.system(size: 8, weight: .bold))
-                        .foregroundColor(Color("PurplePrimary"))
-                }
-                .padding(.all, 4)
-                .background(Color.clear)
-                .cornerRadius(50)
-                .onTapGesture {
-                    DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
-                        reward.ShowReward(viewModel: viewModel)
-                    })
-                }
-                .onAppear() {
-                    reward.LoadReward()
-                }
-                .disabled(!reward.rewardLoaded)
-                .padding(.bottom, 24)
-                
-                HStack {
-                    Text("Change difficulty")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.white)
-                }
-                .padding(.all, 4)
-                .onTapGesture {
-                    viewModel.goToHome()
-                }
-                .padding(.bottom, 40)
-                
-                HStack {
-                    Image(systemName: "app.gift")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 16, height: 16)
-                        .foregroundColor(Color.white)
-                    Text("More games")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(Color.white)
+                    Spacer()
                     
+                    Text("Watch an ad to return where did you stop")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 8)
+                    
+                    VStack {
+                        HStack {
+                            Image(systemName: "film")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 16, height: 16)
+                                .foregroundColor(.white)
+                            Text("Continue with your points")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 16)
+                        .background(Color("PurplePrimary"))
+                        .cornerRadius(50)
+                    }
+                    .padding(.all, 4)
+                    .background(Color("PurpleSecondary"))
+                    .cornerRadius(50)
+                    .onTapGesture {
+                        //                        DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                        //                            reward.ShowReward(viewModel: viewModel)
+                        //                        })
+                        print(UIScreen.main.bounds.width)
+                        hasNotch()
+                    }
+                    .onAppear() {
+                        reward.LoadReward()
+                    }
+                    .disabled(!reward.rewardLoaded)
+                    .padding(.bottom, 24)
+                    
+                    Text("Or start over from zero")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 8)
+                    
+                    HStack {
+                        
+                        HStack {
+                            Text("Change dificulty")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                            
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 8)
+                        .cornerRadius(50)
+                        .onTapGesture {
+                            viewModel.isPresentingView = .difficultySelector
+                        }
+                        
+                        HStack {
+                            HStack {
+                                Image(systemName: "arrow.counterclockwise")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 16, height: 16)
+                                    .foregroundColor(Color("PurplePrimary"))
+                                Text("Restart")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(Color("PurplePrimary"))
+                                
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 8)
+                            .background(Color.white)
+                            .cornerRadius(50)
+                        }
+                        .padding(.all, 4)
+                        .background(Color.clear)
+                        .cornerRadius(50)
+                        .onTapGesture {
+                            viewModel.restartGame()
+                        }
+                    }
+                    .padding(.bottom, (hasNotch() ? 0 : 20))
+                    
+                    BannerAd(unitID: viewModel.AdMobBannerWin).frame(height: 50)
                 }
-                .padding(.all, 4)
-                .onTapGesture {
-                    isShowingOtherApps = true
-                }
-                Spacer()
-//                BannerAd(unitID: viewModel.AdMobBannerHome).frame(height: 100)
-//                    .padding(.bottom, 30)
+                .padding(.bottom, (hasNotch() ? UIScreen.main.bounds.height*0.02 : UIScreen.main.bounds.height*0.05))
             }
-            .padding(.vertical, 50)
-        }.sheet(isPresented: $isShowingOtherApps, content: {
-            OtherApps()
-        })
+        }
+    }
+    
+    func hasNotch() -> Bool {
+        let bottom = UIApplication.shared.windows.first{ $0.isKeyWindow }?.safeAreaInsets.bottom ?? 0
+        if bottom == 0.0 {
+            return true
+        } else {
+            return false
+        }
     }
 }
 

@@ -16,8 +16,8 @@ struct JumpingBallApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if viewModel.isPresentingView == .home {
-                HomeView()
+            if viewModel.isPresentingView == .difficultySelector {
+                DifficultySelector()
                     .environmentObject(viewModel)
                 
             } else if viewModel.isPresentingView == .gameRun {
@@ -26,6 +26,10 @@ struct JumpingBallApp: App {
                 
             } else if viewModel.isPresentingView == .winView {
                 WinView()
+                    .environmentObject(viewModel)
+                
+            } else if viewModel.isPresentingView == .home {
+                HomeView()
                     .environmentObject(viewModel)
             }
         }

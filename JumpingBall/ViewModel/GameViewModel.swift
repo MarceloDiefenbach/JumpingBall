@@ -8,7 +8,7 @@
 import Foundation
 
 enum PresentingViews {
-    case home, gameRun, winView;
+    case home, gameRun, winView, difficultySelector;
 }
 
 enum Difficulty {
@@ -25,7 +25,7 @@ class GameViewModel: ObservableObject {
 //    @Published var AdMobBannerGame: String = "ca-app-pub-3940256099942544/2934735716"
     
     @Published var isPresentingGameView: Bool = false
-    @Published var isPresentingView: PresentingViews = .home
+    @Published var isPresentingView: PresentingViews = .winView
     
     @Published var isGameOver: Bool = false
     @Published var didStartGame: Bool = false
