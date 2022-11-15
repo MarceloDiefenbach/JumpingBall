@@ -127,7 +127,6 @@ struct FirebaseService {
     
     func saveCoins(coins: Int) {
         let username = UserDefaults.standard.string(forKey: "username")
-        
         db.collection("users").document(username ?? "").setData(
             [
                 "coins": coins
@@ -142,7 +141,7 @@ struct FirebaseService {
     
     func getCoins() {
         let username = UserDefaults.standard.string(forKey: "username")
-        
+
         db.collection("users").whereField("username", isEqualTo: username ?? "").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
