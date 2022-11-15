@@ -30,13 +30,13 @@ class Reward: NSObject, GADFullScreenContentDelegate, ObservableObject {
         }
     }
 
-    func ShowReward(viewModel: GameViewModel) {
+    func ShowReward(coordinator: Coordinator) {
         let root = UIApplication.shared.windows.first?.rootViewController
         if let ad = rewardedAd {
             ad.present(fromRootViewController: root!, userDidEarnRewardHandler: {
                 //MARK: - add watched
                 self.rewardLoaded = false
-                viewModel.isPresentingView = .gameRun
+                coordinator.isPresentingView = .gameRun
             })
         } else {
             //MARK: - add error

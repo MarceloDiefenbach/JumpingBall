@@ -11,6 +11,7 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var viewModel: GameViewModel?
+    var coordinator: Coordinator?
 
     // MARK: - Time
     private var lastCurrentTime: Double = -1
@@ -355,7 +356,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         GameDataBase.standard.setCoinsAmount(newValue: viewModel!.coinsCollected)
         
         self.viewModel!.isGameOver = true
-        self.viewModel!.isPresentingView = .winView
+        self.coordinator!.isPresentingView = .winView
         scene?.view?.isPaused = true
     }
     
@@ -373,6 +374,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 newScene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 newScene.scaleMode = .fill
                 newScene.viewModel = self.viewModel
+                newScene.coordinator = self.coordinator
                 let animation = SKTransition.fade(withDuration: 0)
                 self.view?.presentScene(newScene, transition: animation)
                 self.view?.isPaused = false
@@ -396,8 +398,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var cointTime: Double = 1.5
             
             if viewModel?.difficulty == .hard && viewModel!.actualScore > pointsToChangeDifficultyOfHard {
-                obstacleTime = 1.5
-                cointTime = 2.0
+                obstacleTime = 1.3
+                cointTime = 2.2
             }
             
             if deltaTime > obstacleTime {

@@ -11,8 +11,9 @@ import SwiftUI
 struct WinView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
-    @State var isShowingOtherApps: Bool = false
+    @EnvironmentObject var coordinator: Coordinator
     
+    @State var isShowingOtherApps: Bool = false
     @State var collectedDiamonds: Int = 0
     
     var body: some View {
@@ -69,7 +70,7 @@ struct WinView: View {
                     .onTapGesture {
                         print("clicou")
                         DispatchQueue.main.async {
-                            viewModel.reward.ShowReward(viewModel: viewModel)
+                            viewModel.reward.ShowReward(coordinator: coordinator)
                         }
                     }
                     .disabled(!viewModel.reward.rewardLoaded)
@@ -92,7 +93,8 @@ struct WinView: View {
                         .padding(.vertical, 8)
                         .cornerRadius(50)
                         .onTapGesture {
-                            viewModel.isPresentingView = .difficultySelector
+                            viewModel.actualScore = 0
+                            coordinator.isPresentingView = .difficultySelector
                         }
                         
                         HStack {
@@ -116,7 +118,7 @@ struct WinView: View {
                         .background(Color.clear)
                         .cornerRadius(50)
                         .onTapGesture {
-                            viewModel.restartGame()
+                            viewModel.restartGame(coordinator: coordinator)
                         }
                     }
                     .padding(.bottom, (hasNotch() ? 0 : 20))

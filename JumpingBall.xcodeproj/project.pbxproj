@@ -12,6 +12,15 @@
 		DF017ACE2922873400BB55FC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF017ACD2922873400BB55FC /* HomeView.swift */; };
 		DF017AD129229B9F00BB55FC /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF017AD029229B9F00BB55FC /* RewardsView.swift */; };
 		DF017AD42922A37300BB55FC /* RewardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF017AD32922A37300BB55FC /* RewardCell.swift */; };
+		DF0BE73C2923D47500643F7E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BE73B2923D47500643F7E /* LoginView.swift */; };
+		DF0BE73F2923D4E100643F7E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BE73E2923D4E100643F7E /* ProfileView.swift */; };
+		DF0BE7422923D70E00643F7E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BE7412923D70E00643F7E /* Coordinator.swift */; };
+		DF0BE7442923D72A00643F7E /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0BE7432923D72A00643F7E /* Difficulty.swift */; };
+		DF49FC0B2923BAA700278A37 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF49FC0A2923BAA700278A37 /* CreateAccountView.swift */; };
+		DF49FC0D2923C18200278A37 /* JBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF49FC0C2923C18200278A37 /* JBTextField.swift */; };
+		DF49FC0F2923C44400278A37 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF49FC0E2923C44400278A37 /* UserViewModel.swift */; };
+		DF49FC122923C57A00278A37 /* AlertCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF49FC112923C57A00278A37 /* AlertCases.swift */; };
+		DF49FC152923C5BB00278A37 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF49FC142923C5BB00278A37 /* FirebaseService.swift */; };
 		DF5AC9A4291C2340002CF78E /* DifficultySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5AC9A3291C2340002CF78E /* DifficultySelector.swift */; };
 		DF7150FB2921C4E000382B56 /* RewardedAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7150FA2921C4E000382B56 /* RewardedAd.swift */; };
 		DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA76258291AB48B0045E464 /* JumpingBallApp.swift */; };
@@ -36,6 +45,15 @@
 		DF017ACD2922873400BB55FC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DF017AD029229B9F00BB55FC /* RewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
 		DF017AD32922A37300BB55FC /* RewardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardCell.swift; sourceTree = "<group>"; };
+		DF0BE73B2923D47500643F7E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DF0BE73E2923D4E100643F7E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DF0BE7412923D70E00643F7E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DF0BE7432923D72A00643F7E /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		DF49FC0A2923BAA700278A37 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		DF49FC0C2923C18200278A37 /* JBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBTextField.swift; sourceTree = "<group>"; };
+		DF49FC0E2923C44400278A37 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		DF49FC112923C57A00278A37 /* AlertCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCases.swift; sourceTree = "<group>"; };
+		DF49FC142923C5BB00278A37 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		DF5AC9A3291C2340002CF78E /* DifficultySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultySelector.swift; sourceTree = "<group>"; };
 		DF7150FA2921C4E000382B56 /* RewardedAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardedAd.swift; sourceTree = "<group>"; };
 		DFA76255291AB48B0045E464 /* JumpingBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JumpingBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,8 +113,54 @@
 			isa = PBXGroup;
 			children = (
 				DF017AD32922A37300BB55FC /* RewardCell.swift */,
+				DF49FC0C2923C18200278A37 /* JBTextField.swift */,
 			);
 			path = Componentes;
+			sourceTree = "<group>";
+		};
+		DF0BE73D2923D4D500643F7E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DF0BE73E2923D4E100643F7E /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		DF0BE7402923D6D800643F7E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DFA76258291AB48B0045E464 /* JumpingBallApp.swift */,
+				DF0BE7412923D70E00643F7E /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DF49FC092923BA7300278A37 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				DF0BE73D2923D4D500643F7E /* Profile */,
+				DF49FC0A2923BAA700278A37 /* CreateAccountView.swift */,
+				DF49FC0E2923C44400278A37 /* UserViewModel.swift */,
+				DF0BE73B2923D47500643F7E /* LoginView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		DF49FC102923C56600278A37 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				DF49FC112923C57A00278A37 /* AlertCases.swift */,
+				DF0BE7432923D72A00643F7E /* Difficulty.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		DF49FC132923C5B000278A37 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				DF49FC142923C5BB00278A37 /* FirebaseService.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		DF5AC9A2291C2339002CF78E /* Home */ = {
@@ -129,9 +193,12 @@
 		DFA76257291AB48B0045E464 /* JumpingBall */ = {
 			isa = PBXGroup;
 			children = (
-				DF017AD22922A36900BB55FC /* Componentes */,
+				DF0BE7402923D6D800643F7E /* Coordinator */,
+				DF49FC132923C5B000278A37 /* Firebase */,
+				DF49FC102923C56600278A37 /* Enum */,
 				DFA7627B291ADEE20045E464 /* Info.plist */,
 				DFA76266291AB5C60045E464 /* Bird.atlas */,
+				DF49FC092923BA7300278A37 /* User */,
 				DFA76276291AC9A50045E464 /* ViewModel */,
 				DF5AC9A2291C2339002CF78E /* Home */,
 				DF017ACC2922872800BB55FC /* DifficultySelector */,
@@ -141,8 +208,8 @@
 				DFA76278291AD7590045E464 /* WinScreen */,
 				DFA76273291AC8550045E464 /* AdMob */,
 				DFA76277291AC9C00045E464 /* Services */,
-				DFA76258291AB48B0045E464 /* JumpingBallApp.swift */,
 				DFA76269291AB5D90045E464 /* AppDelegate.swift */,
+				DF017AD22922A36900BB55FC /* Componentes */,
 				DFA7625C291AB48D0045E464 /* Assets.xcassets */,
 				DFA7625E291AB48D0045E464 /* Preview Content */,
 			);
@@ -331,19 +398,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF49FC152923C5BB00278A37 /* FirebaseService.swift in Sources */,
 				DFA7627E291AEBC10045E464 /* OtherAppsView.swift in Sources */,
+				DF49FC0D2923C18200278A37 /* JBTextField.swift in Sources */,
 				DF017AD129229B9F00BB55FC /* RewardsView.swift in Sources */,
+				DF0BE7442923D72A00643F7E /* Difficulty.swift in Sources */,
 				DF017AD42922A37300BB55FC /* RewardCell.swift in Sources */,
 				DFA7626F291AB5DB0045E464 /* AppDelegate.swift in Sources */,
+				DF0BE7422923D70E00643F7E /* Coordinator.swift in Sources */,
 				DF017ACE2922873400BB55FC /* HomeView.swift in Sources */,
 				DF7150FB2921C4E000382B56 /* RewardedAd.swift in Sources */,
 				DFA7627A291AD7630045E464 /* WinView.swift in Sources */,
 				DF5AC9A4291C2340002CF78E /* DifficultySelector.swift in Sources */,
 				DFA7626D291AB5DB0045E464 /* GameDataBase.swift in Sources */,
+				DF49FC0B2923BAA700278A37 /* CreateAccountView.swift in Sources */,
 				DFA7626C291AB5DB0045E464 /* GameScene.swift in Sources */,
 				DFA76275291AC8550045E464 /* BannerAd.swift in Sources */,
 				DFA7625B291AB48B0045E464 /* GameView.swift in Sources */,
+				DF49FC122923C57A00278A37 /* AlertCases.swift in Sources */,
+				DF49FC0F2923C44400278A37 /* UserViewModel.swift in Sources */,
 				DFA76259291AB48B0045E464 /* JumpingBallApp.swift in Sources */,
+				DF0BE73C2923D47500643F7E /* LoginView.swift in Sources */,
+				DF0BE73F2923D4E100643F7E /* ProfileView.swift in Sources */,
 				DFA76272291AC7910045E464 /* GameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

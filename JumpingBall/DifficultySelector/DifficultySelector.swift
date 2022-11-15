@@ -11,6 +11,7 @@ import SwiftUI
 struct DifficultySelector: View {
     
     @EnvironmentObject var viewModel: GameViewModel
+    @EnvironmentObject var coordinator: Coordinator
     
     @State var isShowingOtherApps: Bool = false
     
@@ -69,7 +70,7 @@ struct DifficultySelector: View {
                 .cornerRadius(50)
                 .onTapGesture {
                     self.viewModel.difficulty = .easy
-                    self.viewModel.isPresentingView = .gameRun
+                    self.coordinator.isPresentingView = .gameRun
                 }
                 .padding(.bottom, 4)
                 
@@ -97,7 +98,7 @@ struct DifficultySelector: View {
                 .cornerRadius(50)
                 .onTapGesture {
                     self.viewModel.difficulty = .hard
-                    self.viewModel.isPresentingView = .gameRun
+                    self.coordinator.isPresentingView = .gameRun
                 }
                 .padding(.bottom, 4)
                 
@@ -144,7 +145,7 @@ struct DifficultySelector: View {
                 .background(Color.clear)
                 .cornerRadius(50)
                 .onTapGesture {
-                    viewModel.isPresentingView = .home
+                    coordinator.isPresentingView = .home
                 }
                 .padding(.top, 40)
             }

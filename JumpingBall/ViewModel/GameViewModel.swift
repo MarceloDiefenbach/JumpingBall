@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum PresentingViews {
-    case home, gameRun, winView, difficultySelector;
-}
-
-enum Difficulty {
-    case easy, medium, hard;
-}
-
 class GameViewModel: ObservableObject {
     
     @Published var AdMobBannerHome: String = "ca-app-pub-7490663355066325/4061015077"
@@ -25,7 +17,6 @@ class GameViewModel: ObservableObject {
 //    @Published var AdMobBannerGame: String = "ca-app-pub-3940256099942544/2934735716"
     
     @Published var isPresentingGameView: Bool = false
-    @Published var isPresentingView: PresentingViews = .home
     
     @Published var isGameOver: Bool = false
     @Published var didStartGame: Bool = false
@@ -38,13 +29,13 @@ class GameViewModel: ObservableObject {
     
     @Published var reward = Reward()
     
-    func restartGame() {
-        isPresentingView = .gameRun
+    func restartGame(coordinator: Coordinator) {
+        coordinator.isPresentingView = .gameRun
         actualScore = 0
     }
     
-    func goToHome() {
-        isPresentingView = .home
+    func goToHome(coordinator: Coordinator) {
+        coordinator.isPresentingView = .home
         actualScore = 0
     }
     

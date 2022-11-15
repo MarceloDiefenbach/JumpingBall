@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class GameDataBase {
+    
     private let userDefaults = UserDefaults.standard
     static var standard = GameDataBase()
+    var firebaseService = FirebaseService()
     
-    private let highScoreKeyEasy: String = "scoreEasy"
-    private let highScoreKeyHard: String = "scoreHard"
+    private let highScoreEasyKey: String = "scoreEasy"
+    private let highScoreHardKey: String = "scoreHard"
     private let coinsAmountKey: String = "coinsAmount"
     
     private init() {}
@@ -22,10 +25,12 @@ class GameDataBase {
         var highScore = 0
         
         if difficulty == .easy {
-            highScore = userDefaults.integer(forKey: highScoreKeyEasy)
+            firebaseService.getScore(difficulty: .easy)
+            highScore = userDefaults.integer(forKey: highScoreEasyKey)
         
         } else {
-            highScore = userDefaults.integer(forKey: highScoreKeyHard)
+            firebaseService.getScore(difficulty: .hard)
+            highScore = userDefaults.integer(forKey: highScoreHardKey)
         
         }
         return highScore
@@ -36,16 +41,20 @@ class GameDataBase {
         let currentHighScore = getHighScore(difficulty: difficulty)
        
         if newHighScore > currentHighScore {
+            if Auth.auth().currentUser?.email != nil {
+                firebaseService.saveScore(difficulty: difficulty, score: newHighScore)
+            }
             if difficulty == .easy {
-                userDefaults.setValue(newHighScore, forKey: highScoreKeyEasy)
+                userDefaults.setValue(newHighScore, forKey: highScoreEasyKey)
             } else {
-                userDefaults.setValue(newHighScore, forKey: highScoreKeyHard)
+                userDefaults.setValue(newHighScore, forKey: highScoreHardKey)
             }
         }
     }
     
     func setCoinsAmount(newValue: Int) {
         userDefaults.setValue(newValue, forKey: coinsAmountKey)
+        firebaseService.saveCoins(coins: newValue)
     }
     
     func getCoinsAmount() -> Int {

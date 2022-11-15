@@ -11,12 +11,14 @@ import SpriteKit
 struct GameView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
+    @EnvironmentObject var coordinator: Coordinator
     
     var scene: SKScene {
         let scene = GameScene()
         scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         scene.scaleMode = .fill
         scene.viewModel = self.viewModel
+        scene.coordinator = self.coordinator
         return scene
     }
 
