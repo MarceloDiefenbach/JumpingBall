@@ -152,7 +152,7 @@ struct DifficultySelector: View {
             
             VStack {
                 Spacer()
-                BannerAd(unitID: viewModel.AdMobBannerHome).frame(height: 100)
+                BannerAd(unitID: viewModel.AdMobBannerHome).frame(height: 50)
                     .padding(.bottom, 30)
             }
         }
