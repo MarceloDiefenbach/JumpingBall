@@ -28,6 +28,7 @@ struct JumpingBallApp: App {
             } else if coordinator.isPresentingView == .gameRun {
                 GameView()
                     .environmentObject(gameViewModel)
+                    .environmentObject(userViewModel)
                     .environmentObject(coordinator)
                 
             } else if coordinator.isPresentingView == .winView {

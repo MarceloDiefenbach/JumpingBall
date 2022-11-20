@@ -54,13 +54,13 @@ struct FirebaseService {
                     }
                     
                 }
+                completionHandler(ownerUsernameReceiver)
             }
-            completionHandler(ownerUsernameReceiver)
         }
     }
     
     func saveScore(difficulty: Difficulty, score: Int) {
-        let username = UserDefaults.standard.string(forKey: "username")
+        let email = UserDefaults.standard.string(forKey: "email")
         let collectionString: String
         
         if difficulty == .easy {
@@ -69,10 +69,10 @@ struct FirebaseService {
             collectionString = "rankingHard"
         }
         
-        db.collection(collectionString).document(username ?? "dont'have").setData([
-            "username": username ?? "dont'have",
+        db.collection(collectionString).document(email ?? "dont'have").setData([
+            "email": email ?? "dont'have",
             "score": score
-        ]) { err in
+        ], merge: true) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
@@ -80,10 +80,10 @@ struct FirebaseService {
             }
         }
         
-        db.collection("users").document(username ?? "dont'have").setData([
-            "username": username ?? "dont'have",
-            "score": score
-        ]) { err in
+        db.collection("users").document(email ?? "dont'have").setData([
+            "email": email ?? "dont'have",
+            "\(collectionString)": score
+        ], merge: true) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
@@ -93,7 +93,7 @@ struct FirebaseService {
     }
     
     func getScore(difficulty: Difficulty) {
-        let username = UserDefaults.standard.string(forKey: "username")
+        let email = UserDefaults.standard.string(forKey: "email")
         let difficultyReceived: String
         
         if difficulty == .easy {
@@ -102,7 +102,7 @@ struct FirebaseService {
             difficultyReceived = "scoreHard"
         }
         
-        db.collection("users").whereField("username", isEqualTo: username ?? "").getDocuments() { (querySnapshot, err) in
+        db.collection("users").whereField("email", isEqualTo: email ?? "").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 
@@ -112,7 +112,7 @@ struct FirebaseService {
                         
                         let data = doc.data()
                         
-                        if let username = data["username"] as? String,
+                        if let email = data["email"] as? String,
                            let score = data[difficultyReceived] as? Int {
                                 
                             GameDataBase.standard.setHighScore(newHighScore: score, difficulty: difficulty)
@@ -126,8 +126,8 @@ struct FirebaseService {
     }
     
     func saveCoins(coins: Int) {
-        let username = UserDefaults.standard.string(forKey: "username")
-        db.collection("users").document(username ?? "").setData(
+        let email = UserDefaults.standard.string(forKey: "email")
+        db.collection("users").document(email ?? "").setData(
             [
                 "coins": coins
             ], merge: true) { err in
@@ -140,9 +140,9 @@ struct FirebaseService {
     }
     
     func getCoins() {
-        let username = UserDefaults.standard.string(forKey: "username")
+        let email = UserDefaults.standard.string(forKey: "email")
 
-        db.collection("users").whereField("username", isEqualTo: username ?? "").getDocuments() { (querySnapshot, err) in
+        db.collection("users").whereField("email", isEqualTo: email ?? "").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 
@@ -152,7 +152,7 @@ struct FirebaseService {
                         
                         let data = doc.data()
                         
-                        if let username = data["username"] as? String,
+                        if let email = data["email"] as? String,
                            let coins = data["coins"] as? Int {
                                 
                             UserDefaults.standard.setValue(coins, forKey: "coinsAmount")

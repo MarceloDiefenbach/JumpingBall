@@ -35,7 +35,7 @@ class UserViewModel: ObservableObject {
                     Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                         
                         if error == nil {
-                            self.db.collection("users").document(username).setData(
+                            self.db.collection("users").document(email).setData(
                                 [
                                     "username": username,
                                     "email": email,
@@ -46,7 +46,7 @@ class UserViewModel: ObservableObject {
                                 , merge: true
                             )
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                                self.saveOnUserDefaults(email: email)
+                                self.saveOnUserDefaults(email: email, pass: password)
                                 completionHandler(.success)
                             })
                         } else {
@@ -77,7 +77,7 @@ class UserViewModel: ObservableObject {
         } else {
             Auth.auth().signIn(withEmail: email, password: password) { [self] authResult, error in
                 if authResult != nil {
-                    saveOnUserDefaults(email: email)
+                    saveOnUserDefaults(email: email, pass: password)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         firebaseService.getScore(difficulty: .easy)
                         firebaseService.getCoins()
@@ -109,10 +109,10 @@ class UserViewModel: ObservableObject {
     
     func deleteUser(coordinator: Coordinator) {
         
-        let username = UserDefaults.standard.string(forKey: "username")
+        let email = UserDefaults.standard.string(forKey: "email")
         
         self.firebaseAuth.currentUser?.delete()
-        self.db.collection("users").document(username ?? "").delete() { err in
+        self.db.collection("users").document(email ?? "").delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
@@ -128,11 +128,12 @@ class UserViewModel: ObservableObject {
         
     }
     
-    func saveOnUserDefaults(email: String) {
+    func saveOnUserDefaults(email: String, pass: String) {
         
-        firebaseService.getUserByEmail(email: email, completionHandler: { (response) in
-            UserDefaults.standard.set(response, forKey: "username")
+        firebaseService.getUserByEmail(email: email, completionHandler: { (username) in
+            UserDefaults.standard.set(username, forKey: "username")
             UserDefaults.standard.set(email, forKey: "email")
+            UserDefaults.standard.set(pass, forKey: "verification")
         })
         
     }

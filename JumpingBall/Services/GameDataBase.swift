@@ -39,7 +39,7 @@ class GameDataBase {
     func setHighScore(newHighScore: Int, difficulty: Difficulty) {
         
         let currentHighScore = getHighScore(difficulty: difficulty)
-       
+
         if newHighScore > currentHighScore {
             if Auth.auth().currentUser?.email != nil {
                 firebaseService.saveScore(difficulty: difficulty, score: newHighScore)

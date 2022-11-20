@@ -11,6 +11,7 @@ import SpriteKit
 struct GameView: View {
     
     @EnvironmentObject var viewModel: GameViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var coordinator: Coordinator
     
     var scene: SKScene {
