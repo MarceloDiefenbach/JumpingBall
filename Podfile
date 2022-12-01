@@ -9,7 +9,7 @@ target 'JumpingBall' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'FirebaseAnalytics'
   pod 'Firebase/Core'
-  pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
 end
